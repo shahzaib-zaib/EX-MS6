@@ -33,3 +33,40 @@ let main1 = () => {
   
   
   //////////////////////////////////////////////////
+
+  // Example 3 - Calling External API's
+let main3 = () => {
+    return fetch('https://jsonplaceholder.typicode.com/posts')
+  }
+  
+  main3()
+    .then(res => res.json())
+    .then(data => console.log('data :', data))
+    .catch(err => console.log('err :', err))
+  
+  
+  //////////////////////////////////////////////////
+
+  // Example 4 - Making Function A Promise Using Async
+  async function getName(){
+      return 'Shahzaib'
+  }
+
+  //let name = getName().then(data => console.log(data))
+  //console.log(name): // A Problem is facing here is that it's showing me a promise in panding state instead of an actual value
+
+  //Example 5 - waiting for completion of Promise using await keyword
+  async function logName(){
+      let name = await getName().then(data => data) // Shahzaib
+      console.log('name :', name)
+      console.log('name :', name)
+      console.log('name :', name)
+      console.log('name :', name)
+  }
+
+  logName()
+
+  let getUsers = () => {
+      let users = fetch('https://jsonplaceholder.typicode.com/users')
+      return users
+  }
