@@ -64,9 +64,31 @@ let main3 = () => {
       console.log('name :', name)
   }
 
-  logName()
+  //logName()
 
-  let getUsers = () => {
-      let users = fetch('https://jsonplaceholder.typicode.com/users')
-      return users
+  let getUsers = async () => {
+      let users = await fetch('https://jsonplaceholder.typicode.com/users')
+                         .then(res => res.json())
+      return users;
   }
+
+  let onButtonClick = async () => {
+      try
+      {
+          let users = await getUsers()
+          console.log('users :', users)
+          let modifiedUsers = users.map(data => {
+            data.className = 'EX-MS6'
+            return data
+          })
+          console.log('modifiedUsers :', modifiedUsers)
+      }
+      catch(err)
+      {
+          console.log('Err :', err)
+      }
+  }
+
+  onButtonClick()
+  
+
